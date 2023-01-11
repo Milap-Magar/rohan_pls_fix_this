@@ -15,6 +15,7 @@ class UserService extends DbService{
                 status: Joi.string().required(),
                 image: Joi.string().empty()
             })
+            
             let response = UserSchema.validate(data);
             if(response.error){
                 throw response.error.details[0].message
@@ -23,6 +24,7 @@ class UserService extends DbService{
             console.log(err);
             throw err;
         }
+        
     }
     createUser = async (data)=>{
         try{

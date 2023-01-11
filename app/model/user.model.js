@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
 // const AddressSchemaDef = new mongoose.schema();
+const mongoose = require("mongoose");
 
-const UserSchemaDef = mongoose.schema({
+const UserSchemaDef = new mongoose.Schema({
     name: {
         type: String,
         required: true // if compulsory

@@ -15,6 +15,7 @@ class AuthController{
             body.image = req.file.filename
         }
         this.user_svc.validateUser(body);
+        console.log(body)
         let data = await this.user_svc.createUser(body);
 
     //nodemailer
@@ -40,7 +41,9 @@ class AuthController{
             msg: "Register data test"
         })
         }catch(excep){
+            console.log(excep)
             next({status:400, msg: excep})
+            
         }
     }
     loginUser = async (req, res, next)=>{
@@ -49,26 +52,9 @@ class AuthController{
             let loggedInUser = await this.user_svc.getUserByEmail(data);
 
         }catch(excepts){
-            console.log("Login: ", excepts);
+            console.log('Login: ', excepts)
             next({status: 400, msg: JSON.stringify(excepts)});
-        }   
-    let validation_flag = true ;
-        if(!validation_flag){
-            next({status: 400,
-                    msg: "Credentials doesn't match"
-                })
-            // res.status(400).json({
-            //     result: null, // <any data-types>
-            //     status: false, //<boolean only>
-            //     msg: "Credentials doesnot match" // <string only>
-            // });
-        }else{
-            res.json({
-                result: body,
-                status: true ,
-                msg: "Log in sucess"
-            })
-        }
+        } 
  //status code is always 200.00k port is always success 
     }
     logoutUser = (req, res, next)=>{
@@ -83,6 +69,23 @@ class AuthController{
         })
     }
 }
-
-
+//   [
+    // let validation_flag = true ;
+    // if(!validation_flag){
+    //     next({status: 400,
+    //             msg: "Credentials doesn't match"
+    //         })
+    //     // res.status(400).json({
+    //     //     result: null, // <any data-types>
+    //     //     status: false, //<boolean only>
+    //     //     msg: "Credentials doesnot match" // <string only>
+    //     // });
+    // }else{
+    //     res.json({
+    //         result: body,
+    //         status: true ,
+    //         msg: "Log in sucess"
+    //     })
+    // }
+// ]
 module.exports= AuthController;
