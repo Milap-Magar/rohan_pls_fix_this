@@ -3,7 +3,6 @@ const DbService = require("./db.service");
 const UserModel = require("../model/user.model");
 
 class UserService extends DbService{
-    
     validateUser=(data)=>{
         try{
             let UserSchema  = Joi.object({
@@ -55,7 +54,7 @@ class UserService extends DbService{
         } catch(err){
             throw err;
         }
-    }
+    } 
 
 }
 module.exports = UserService;   
